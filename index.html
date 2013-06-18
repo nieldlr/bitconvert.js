@@ -1,0 +1,60 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+  var options = {
+    current_currency: "USD",
+    source: 'http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast',
+    class_element: 'amount'
+  }
+  var exchange_rate = 0;
+  var original_element_values = [];
+
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = "."+ options.class_element+"{ border: 1px solid #bbb; background-color: #eee; padding: 0px 4px; }";
+  document.body.appendChild(css);
+
+  function toggle(){
+    if(exchange_rate == 0){
+      var elements = document.getElementsByClassName(options.class_element);
+      for(var i = 0; i < elements.length; i++){
+        original_element_values[i] = parseFloat(elements[i].innerHTML);
+      }
+      options.current_currency = options.current_currency == 'USD' ? "BTC" : "USD";
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4){
+          var json = JSON.parse(xhr.responseText);
+          exchange_rate = json.data.last.value;
+          render();
+        }
+      }
+      xhr.open('GET', options.source, true);
+      xhr.send();
+    }
+    else{
+      options.current_currency = options.current_currency == 'USD' ? "BTC" : "USD";
+      render();
+    }
+  }
+
+  function render(){
+    var elements = document.getElementsByClassName(options.class_element);
+    for(var i = 0; i < elements.length; i++){
+      if(options.current_currency == 'BTC'){
+        elements[i].innerHTML = (original_element_values[i]*exchange_rate).toFixed(2) + " USD";
+      }
+      else{
+        elements[i].innerHTML = original_element_values[i] + " BTC";
+      }
+    }
+  }
+  </script>
+
+  <span class="amount">5.2452 BTC</span>
+  <span class="amount">1 BTC</span>
+  <button onclick="toggle()">Toggle</button>
+</body>
+</html>
