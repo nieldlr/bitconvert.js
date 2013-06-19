@@ -1,8 +1,8 @@
 var options = {
-  default_currency: "USD",
-  source: 'http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast',
+  default_currency: 'USD',
   class_element: 'amount'
 }
+
 var exchange_rate = 0;
 var original_element_values = [];
 var current_currency = options.default_currency;
@@ -29,7 +29,7 @@ function toggleConversion(){
         render();
       }
     }
-    xhr.open('GET', options.source, true);
+    xhr.open('GET', 'http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast', true);
     xhr.send();
   }
   else{
