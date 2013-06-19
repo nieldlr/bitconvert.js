@@ -22,7 +22,7 @@ You can change the default values by editing the javascript file. The options ar
     }
 
 ##Styling
-You can also change the styling by editing the javascript file. It works on normal CSS rules. The default for Bitconvert is shown below.
+You can also change the styling by editing the javascript file. It works on normal CSS rules. The default for Bitconvert is shown below. Change it to anything you'd like.
 
     css.innerHTML = "."+ options.class_element+"{ border: 1px solid #aaa; background-color: #eee; padding: 0px 6px; }";
 
