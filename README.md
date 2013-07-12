@@ -11,7 +11,7 @@ You have to wrap the amount within a class element. The default is called 'amoun
     <script src="bitconvert.js"></script>
     <span class="amount">$ 5.24</span>
     <span class="amount">$ 1</span>
-    <button onclick="toggleConversion()">Toggle</button>
+    <button onclick="bitconvert.toggleConversion()">Toggle</button>
 
 ##Options
 You can change the default values by editing the javascript file. The options are at the top of the file. These are the defaults.
